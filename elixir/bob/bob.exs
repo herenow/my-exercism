@@ -24,8 +24,8 @@ defmodule Bob do
   end
 
   defp is_blank?(input) do
-    input |>
-    String.replace_trailing(" ", "") |>
-    String.equivalent?("")
+    input
+    |> String.replace_trailing(" ", "")
+    |> String.equivalent?("")
   end
 end
