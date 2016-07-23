@@ -1,20 +1,20 @@
 defmodule Bob do
   def hey(input) do
     cond do
-        is_blank?(input) -> "Fine. Be that way!"
-        is_question?(input) -> "Sure."
-        is_yelling?(input) -> "Whoa, chill out!"
+        input |> is_blank? -> "Fine. Be that way!"
+        input |> is_question? -> "Sure."
+        input |> is_yelling? -> "Whoa, chill out!"
         true -> "Whatever."
     end
   end
 
   defp is_question?(input) do
-    String.ends_with?(input, "?")
+    input |> String.ends_with?("?")
   end
 
   defp is_yelling?(input) do
-    upcase_input  = String.upcase(input)
-    downcase_input = String.downcase(input)
+    upcase_input  = input |> String.upcase
+    downcase_input = input |> String.downcase
 
     cond do
       upcase_input == downcase_input -> false
@@ -24,8 +24,8 @@ defmodule Bob do
   end
 
   defp is_blank?(input) do
-    input = String.replace_trailing(input, " ", "")
-
-    String.equivalent?(input, "")
+    input |>
+    String.replace_trailing(" ", "") |>
+    String.equivalent?("")
   end
 end
