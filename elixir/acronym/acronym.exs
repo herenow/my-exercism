@@ -9,8 +9,9 @@ defmodule Acronym do
     |> upcases_and_dashes_to_space
     |> remove_punctuations
     |> split_on_whitespaces
-    |> Enum.map(&(&1 |> String.at(0) |> String.capitalize))
-    |> Enum.join("")
+    |> Enum.reduce("", fn(x, acc) ->
+      acc <> (x |> String.first |> String.capitalize)
+    end)
   end
 
   defp remove_punctuations(string) do
